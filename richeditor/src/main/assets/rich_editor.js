@@ -15,6 +15,14 @@
  */
 
 var RE = {};
+var isBold = false;
+var isItalic = false;
+var isSubscript = false;
+var isSuperscript = false;
+var isStrikeThrough = false;
+var isUnderline = false;
+
+
 
 RE.currentSelection = {
     "startContainer": 0,
@@ -103,26 +111,32 @@ RE.redo = function() {
 }
 
 RE.setBold = function() {
+    isBold = !isBold;
     document.execCommand('bold', false, null);
 }
 
 RE.setItalic = function() {
+    isItalic = !isItalic;
     document.execCommand('italic', false, null);
 }
 
 RE.setSubscript = function() {
+    isSubscript = !isSubscript;
     document.execCommand('subscript', false, null);
 }
 
 RE.setSuperscript = function() {
+    isSuperscript = !isSuperscript;
     document.execCommand('superscript', false, null);
 }
 
 RE.setStrikeThrough = function() {
+    isStrikeThrough = !isStrikeThrough;
     document.execCommand('strikeThrough', false, null);
 }
 
 RE.setUnderline = function() {
+    isUnderline = !isUnderline;
     document.execCommand('underline', false, null);
 }
 
@@ -251,23 +265,44 @@ RE.queryCommandState = function(command) {
 }
 
 RE.enabledEditingItems = function(e) {
+
+    if(isBold!=document.queryCommandState('bold')){
+        document.execCommand('bold', false, null);
+    }
+    if(isItalic!=document.queryCommandState('italic')){
+        document.execCommand('italic', false, null);
+    }
+    if (isSubscript!=document.queryCommandState('subscript')) {
+        document.execCommand('subscript', false, null);
+    }
+     if (isSuperscript!=document.queryCommandState('superscript')) {
+        document.execCommand('superscript', false, null);
+     }
+    if (isStrikeThrough!=document.queryCommandState('strikeThrough')) {
+        document.execCommand('strikeThrough', false, null);
+    }
+    if (isUnderline!=document.queryCommandState('underline')) {
+        document.execCommand('underline', false, null);
+    }
+
+
     var items = [];
-    if (document.queryCommandState('bold')) {
+    if (document.queryCommandState('bold')) {// 粗体
         items.push('bold');
     }
-    if (document.queryCommandState('italic')) {
+    if (document.queryCommandState('italic')) {// 斜体
         items.push('italic');
     }
-    if (document.queryCommandState('subscript')) {
+    if (document.queryCommandState('subscript')) {// 下标
         items.push('subscript');
     }
-    if (document.queryCommandState('superscript')) {
+    if (document.queryCommandState('superscript')) {// 上标
         items.push('superscript');
     }
-    if (document.queryCommandState('strikeThrough')) {
+    if (document.queryCommandState('strikeThrough')) {// 删除线
         items.push('strikeThrough');
     }
-    if (document.queryCommandState('underline')) {
+    if (document.queryCommandState('underline')) {// 下划线
         items.push('underline');
     }
     if (document.queryCommandState('insertOrderedList')) {
