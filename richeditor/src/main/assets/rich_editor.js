@@ -15,14 +15,6 @@
  */
 
 var RE = {};
-var isBold = false;
-var isItalic = false;
-var isSubscript = false;
-var isSuperscript = false;
-var isStrikeThrough = false;
-var isUnderline = false;
-
-
 
 RE.currentSelection = {
     "startContainer": 0,
@@ -111,32 +103,26 @@ RE.redo = function() {
 }
 
 RE.setBold = function() {
-    isBold = !isBold;
     document.execCommand('bold', false, null);
 }
 
 RE.setItalic = function() {
-    isItalic = !isItalic;
     document.execCommand('italic', false, null);
 }
 
 RE.setSubscript = function() {
-    isSubscript = !isSubscript;
     document.execCommand('subscript', false, null);
 }
 
 RE.setSuperscript = function() {
-    isSuperscript = !isSuperscript;
     document.execCommand('superscript', false, null);
 }
 
 RE.setStrikeThrough = function() {
-    isStrikeThrough = !isStrikeThrough;
     document.execCommand('strikeThrough', false, null);
 }
 
 RE.setUnderline = function() {
-    isUnderline = !isUnderline;
     document.execCommand('underline', false, null);
 }
 
@@ -153,7 +139,6 @@ RE.setTextColor = function(color) {
     document.execCommand("styleWithCSS", null, true);
     document.execCommand('foreColor', false, color);
     document.execCommand("styleWithCSS", null, false);
-    RE.enabledEditingItems();
 }
 
 
@@ -162,7 +147,6 @@ RE.setTextBackgroundColor = function(color) {
     document.execCommand("styleWithCSS", null, true);
     document.execCommand('hiliteColor', false, color);
     document.execCommand("styleWithCSS", null, false);
-    RE.enabledEditingItems();
 }
 
 RE.setFontSize = function(fontSize){
@@ -265,44 +249,23 @@ RE.queryCommandState = function(command) {
 }
 
 RE.enabledEditingItems = function(e) {
-
-    if(isBold!=document.queryCommandState('bold')){
-        document.execCommand('bold', false, null);
-    }
-    if(isItalic!=document.queryCommandState('italic')){
-        document.execCommand('italic', false, null);
-    }
-    if (isSubscript!=document.queryCommandState('subscript')) {
-        document.execCommand('subscript', false, null);
-    }
-     if (isSuperscript!=document.queryCommandState('superscript')) {
-        document.execCommand('superscript', false, null);
-     }
-    if (isStrikeThrough!=document.queryCommandState('strikeThrough')) {
-        document.execCommand('strikeThrough', false, null);
-    }
-    if (isUnderline!=document.queryCommandState('underline')) {
-        document.execCommand('underline', false, null);
-    }
-
-
     var items = [];
-    if (document.queryCommandState('bold')) {// 粗体
+    if (document.queryCommandState('bold')) {
         items.push('bold');
     }
-    if (document.queryCommandState('italic')) {// 斜体
+    if (document.queryCommandState('italic')) {
         items.push('italic');
     }
-    if (document.queryCommandState('subscript')) {// 下标
+    if (document.queryCommandState('subscript')) {
         items.push('subscript');
     }
-    if (document.queryCommandState('superscript')) {// 上标
+    if (document.queryCommandState('superscript')) {
         items.push('superscript');
     }
-    if (document.queryCommandState('strikeThrough')) {// 删除线
+    if (document.queryCommandState('strikeThrough')) {
         items.push('strikeThrough');
     }
-    if (document.queryCommandState('underline')) {// 下划线
+    if (document.queryCommandState('underline')) {
         items.push('underline');
     }
     if (document.queryCommandState('insertOrderedList')) {
@@ -399,43 +362,18 @@ function reportColourAndFontSize(items) {
             fontSize = 3;
         }
         var color = getComputedStyleProperty(containerEl, "color");
-        items.push(color.colorHex());
+        items.push(colorRGB2Hex(color));
         items.push(fontSize+"pt");
     }
 }
 
-//十六进制颜色值的正则表达式
-var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
 /*RGB颜色转换为16进制*/
-String.prototype.colorHex = function(){
-	var that = this;
-	if(/^(rgb|RGB)/.test(that)){
-		var aColor = that.replace(/(?:\(|\)|rgb|RGB)*/g,"").split(",");
-		var strHex = "#";
-		for(var i=0; i<aColor.length; i++){
-			var hex = Number(aColor[i]).toString(16);
-			if(hex === "0"){
-				hex += hex;
-			}
-			strHex += hex;
-		}
-		if(strHex.length !== 7){
-			strHex = that;
-		}
-		return strHex;
-	}else if(reg.test(that)){
-		var aNum = that.replace(/#/,"").split("");
-		if(aNum.length === 6){
-			return that;
-		}else if(aNum.length === 3){
-			var numHex = "#";
-			for(var i=0; i<aNum.length; i+=1){
-				numHex += (aNum[i]+aNum[i]);
-			}
-			return numHex;
-		}
-	}else{
-		return that;
-	}
-};
+function colorRGB2Hex(color) {
+    var rgb = color.split(',');
+    var r = parseInt(rgb[0].split('(')[1]);
+    var g = parseInt(rgb[1]);
+    var b = parseInt(rgb[2].split(')')[0]);
+    var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return hex;
+ }
 

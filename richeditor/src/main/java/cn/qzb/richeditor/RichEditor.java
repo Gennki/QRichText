@@ -330,7 +330,6 @@ public class RichEditor extends WebView {
 
     public void setTextColor(int color) {
         exec("javascript:RE.prepareInsert();");
-
         String hex = convertHexColorString(color);
         exec("javascript:RE.setTextColor('" + hex + "');");
     }
@@ -407,6 +406,10 @@ public class RichEditor extends WebView {
     public void focusEditor() {
         requestFocus();
         exec("javascript:RE.focus();");
+    }
+
+    public void refreshState(){
+        exec("javascript:RE.enabledEditingItems();");
     }
 
     public void clearFocusEditor() {
