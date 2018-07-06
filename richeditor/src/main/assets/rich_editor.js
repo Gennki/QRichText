@@ -47,9 +47,9 @@ RE.getText = function() {
     return RE.editor.innerText;
 }
 
-//RE.setBaseTextColor = function(color) {
-//    RE.editor.style.color  = color;
-//}
+RE.setBaseTextColor = function(color) {
+    RE.editor.style.color  = color;
+}
 
 RE.setBaseFontSize = function(size) {
     RE.editor.style.fontSize = size;
