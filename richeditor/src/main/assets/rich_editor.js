@@ -47,9 +47,9 @@ RE.getText = function() {
     return RE.editor.innerText;
 }
 
-RE.setBaseTextColor = function(color) {
-    RE.editor.style.color  = color;
-}
+//RE.setBaseTextColor = function(color) {
+//    RE.editor.style.color  = color;
+//}
 
 RE.setBaseFontSize = function(size) {
     RE.editor.style.fontSize = size;
@@ -181,8 +181,8 @@ RE.setBlockquote = function() {
     document.execCommand('formatBlock', false, '<blockquote>');
 }
 
-RE.insertImage = function(url, alt) {
-    var html = '<img src="' + url + '" width="100%" alt="' + alt + '" />';
+RE.insertImage = function(url, alt,widthPercent) {
+    var html = '<img src="' + url + '" width="'+widthPercent+'%" alt="' + alt + '" />';
     RE.insertHTML(html);
 }
 

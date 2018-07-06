@@ -10,6 +10,7 @@ public class RE {
     public static boolean isBold = false;
     public static boolean isItalic = false;
     public static int fontSize = 3;
+    public static boolean isFocus = false;// 是否获取到焦点
 
 
     public static void init(RichEditor mEditor) {
@@ -37,7 +38,7 @@ public class RE {
     public static void setTextColor(int color) {
         fontColor = color;
         mEditor.setTextColor(color);
-        mEditor.refreshState();
+        reFreshState();
     }
 
     /**
@@ -52,7 +53,7 @@ public class RE {
         }
         RE.fontSize = fontSize;
         mEditor.setFontSize(fontSize);
-        mEditor.refreshState();
+        reFreshState();
     }
 
     public static String getHtml() {
@@ -65,5 +66,20 @@ public class RE {
 
     public static void setPadding(int left, int top, int right, int bottom) {
         mEditor.setPadding(left, top, right, bottom);
+    }
+
+    public static void insertImage(String url, String alt) {
+        insertImage(url, alt, 100);
+    }
+
+    public static void insertImage(String url, String alt, int imageWidthPercent) {
+        if (!isFocus) {
+            mEditor.focusEditor();
+        }
+        mEditor.insertImage(url, alt, imageWidthPercent);
+    }
+    
+    public static void reFreshState(){
+        mEditor.refreshState();
     }
 }

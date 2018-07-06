@@ -6,13 +6,13 @@ import android.util.Log
 
 open class RichTextActivity : AppCompatActivity(), RichEditor.OnDecorationStateListener, RichEditor.OnTextChangeListener {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
     override fun onTextChange(text: String) {
+        RE.isFocus = true// 文本改动过,说明肯定获取到了焦点
     }
 
     override fun onStateChangeListener(text: String, types: List<RichEditor.Type>) {

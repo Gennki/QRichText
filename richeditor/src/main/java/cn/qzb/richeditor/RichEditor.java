@@ -202,10 +202,10 @@ public class RichEditor extends WebView {
         return mContents;
     }
 
-    public void setEditorFontColor(int color) {
-        String hex = convertHexColorString(color);
-        exec("javascript:RE.setBaseTextColor('" + hex + "');");
-    }
+//    public void setEditorFontColor(int color) {
+//        String hex = convertHexColorString(color);
+//        exec("javascript:RE.setBaseTextColor('" + hex + "');");
+//    }
 
     public void setEditorFontSize(int px) {
         exec("javascript:RE.setBaseFontSize('" + px + "px');");
@@ -388,9 +388,10 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setNumbers();");
     }
 
-    public void insertImage(String url, String alt) {
+    public void insertImage(String url, String alt, int imageWidthPercent) {
         exec("javascript:RE.prepareInsert();");
-        exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
+        String a = "javascript:RE.insertImage('" + url + "', '" + alt + "','" + imageWidthPercent + "');";
+        exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + imageWidthPercent + "');");
     }
 
     public void insertLink(String href, String title) {
@@ -408,7 +409,7 @@ public class RichEditor extends WebView {
         exec("javascript:RE.focus();");
     }
 
-    public void refreshState(){
+    public void refreshState() {
         exec("javascript:RE.enabledEditingItems();");
     }
 

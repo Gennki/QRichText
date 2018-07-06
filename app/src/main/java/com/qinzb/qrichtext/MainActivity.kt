@@ -20,6 +20,10 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (savedInstanceState != null) {
+            RE.reFreshState()
+        }
+
         // init rich text editor
         RE.init(editor)
         RE.setPlaceHolder("Input text here...")
@@ -44,6 +48,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         action_italic.setOnClickListener(this)
         action_font_color.setOnClickListener(this)
         action_font_size.setOnClickListener(this)
+        action_img.setOnClickListener(this)
     }
 
 
@@ -58,6 +63,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
                 if (RE.isItalic) changeIconColor(action_italic, iconSelectColor) else changeIconColor(action_italic, iconDefaultColor)
             }
             R.id.action_font_size -> RE.setTextSize(Random().nextInt(7) + 1)// 字号
+            R.id.action_img -> RE.insertImage("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&fm=200&gp=0.jpg", "请检查网络")// 插入图片
             R.id.action_font_color -> {// 字体颜色
                 val color = randomColor()
                 RE.setTextColor(color)
@@ -67,6 +73,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
     }
 
 
+    // 随机颜色
     private fun randomColor(): Int {
         val result = StringBuffer()
         result.append("#")
@@ -76,7 +83,10 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         return Color.parseColor(result.toString())
     }
 
+    // 改变底部图标颜色
     private fun changeIconColor(imageView: ImageView, color: Int) {
         ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(color))
     }
+
+
 }
