@@ -108,12 +108,19 @@ object RE {
         editor!!.setPadding(left, top, right, bottom)
     }
 
-    @JvmOverloads
     fun insertImage(url: String, alt: String, imageWidthPercent: Int = 100) {
         if (!isFocus) {
             editor!!.focusEditor()
         }
         editor!!.insertImage(url, alt, imageWidthPercent)
+    }
+
+    // 图片大小自适应
+    fun insertImageWrapWidth(url: String, alt: String) {
+        if (!isFocus) {
+            editor!!.focusEditor()
+        }
+        editor!!.insertImageWrapWidth(url, alt)
     }
 
     fun setUnderLine() {

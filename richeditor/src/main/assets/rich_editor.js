@@ -186,6 +186,11 @@ RE.insertImage = function(url, alt,widthPercent) {
     RE.insertHTML(html);
 }
 
+RE.insertImageWrapWidth = function(url, alt) {
+    var html = '<img src="' + url + '" alt="' + alt + '" />';
+    RE.insertHTML(html);
+}
+
 RE.insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);

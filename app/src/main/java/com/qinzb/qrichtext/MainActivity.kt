@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 RE.setTextSize(fontSize)
                 Toast.makeText(this, "Font size is " + fontSize + "pt", Toast.LENGTH_SHORT).show()
             }
-            R.id.action_img -> RE.insertImage("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&fm=200&gp=0.jpg", "请检查网络")// 插入图片
+            R.id.action_img -> RE.insertImage("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&fm=200&gp=0.jpg", "image")// 插入图片
             R.id.action_font_color -> {// 字体颜色
                 val color = randomColor()
                 RE.setTextColor(color)
