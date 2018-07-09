@@ -387,6 +387,14 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setNumbers();");
     }
 
+    public void insertText(String text) {
+        exec("javascript:RE.insertText(" + text + ");");
+    }
+
+    public void deleteOneWord() {
+        exec("javascript:RE.deleteOneWord();");
+    }
+
     public void insertImage(String url, String alt, int imageWidthPercent) {
         exec("javascript:RE.prepareInsert();");
         String a = "javascript:RE.insertImage('" + url + "', '" + alt + "','" + imageWidthPercent + "');";

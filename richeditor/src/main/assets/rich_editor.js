@@ -191,6 +191,15 @@ RE.insertHTML = function(html) {
     document.execCommand('insertHTML', false, html);
 }
 
+RE.insertText = function(text) {
+    document.execCommand('insertText', false, text);
+}
+RE.deleteOneWord = function() {
+    document.execCommand('delete',false,"1");
+}
+
+
+
 RE.insertLink = function(url, title) {
     RE.restorerange();
     var sel = document.getSelection();
