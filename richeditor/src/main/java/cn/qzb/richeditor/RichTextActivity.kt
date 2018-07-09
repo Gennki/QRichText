@@ -25,7 +25,7 @@ open class RichTextActivity : AppCompatActivity(), RichEditor.OnDecorationStateL
             RE.getEditor()!!.setFontSize(RE.fontSize)
         }
 
-        if ((RE.isBold != types.contains(RichEditor.Type.BOLD)) || (RE.isBold && !RE.getHtml().contains("</b>"))) {
+        if (RE.isBold != types.contains(RichEditor.Type.BOLD)) {
             RE.getEditor().setBold()
         }
         if (RE.isItalic != types.contains(RichEditor.Type.ITALIC)) {
