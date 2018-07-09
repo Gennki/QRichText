@@ -31,6 +31,9 @@ open class RichTextActivity : AppCompatActivity(), RichEditor.OnDecorationStateL
         if (RE.isItalic != types.contains(RichEditor.Type.ITALIC)) {
             RE.getEditor().setItalic()
         }
+        if (RE.isUnderline != types.contains(RichEditor.Type.UNDERLINE)) {
+            RE.getEditor().setUnderline()
+        }
 
     }
 

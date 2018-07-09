@@ -9,6 +9,7 @@ public class RE {
     public static int fontColor = Color.BLACK;
     public static boolean isBold = false;
     public static boolean isItalic = false;
+    public static boolean isUnderline = false;
     public static int fontSize = 3;
     public static boolean isFocus = false;// 是否获取到焦点
 
@@ -77,6 +78,11 @@ public class RE {
             mEditor.focusEditor();
         }
         mEditor.insertImage(url, alt, imageWidthPercent);
+    }
+
+    public static void setUnderLine() {
+        isUnderline = !isUnderline;
+        mEditor.setUnderline();
     }
     
     public static void reFreshState(){
