@@ -1,10 +1,10 @@
-========== QRichText
+# QRichText
 
-##效果图
+## 效果图
 ![image.png](http://chuantu.biz/t6/340/1531126153x-1404793292.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##添加依赖
-1.在项目根目录的build.gradle中添加如下语句
+## 添加依赖
+1. 在项目根目录的build.gradle中添加如下语句
 ```
 	allprojects {
 		repositories {
@@ -13,7 +13,7 @@
 		}
 	}
 ```
-2.在module下的build.gradle中添加如下语句
+2. 在module下的build.gradle中添加如下语句
 ```
 	dependencies {
 	        implementation 'com.github.Gennki:QRichText:v1.0.1'
@@ -21,22 +21,22 @@
 
 ```
 
-##使用方法
-1.xml布局如下:
+## 使用方法
+1. xml布局如下:
 ```
 <cn.qzb.richeditor.RichEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 ```
-2.在Activity的onCreate中初始化RichEditor
+2. 在Activity的onCreate中初始化RichEditor
 ```
 // init rich text editor
 RE.init(editor)
 RE.setPlaceHolder("Input text here...")
 RE.setPadding(20, 20, 20, 20)
 ```
-3.常用api
+3. 常用api
 - RE.getHtml();// 获取富文本html代码
 - RE.setBold();// 加粗的时候调用这个方法为取消加粗,没有加粗的时候调用这个方法为加粗
 - RE.setItalic();// 斜体,使用方法和加粗相同
