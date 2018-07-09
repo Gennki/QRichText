@@ -53,6 +53,13 @@
                 android:padding="8dp"
                 android:src="@mipmap/font_color" />
 
+            <ImageView
+                android:id="@+id/action_font_background_color"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@mipmap/font_background_color" />
+
 
             <ImageView
                 android:id="@+id/action_img"

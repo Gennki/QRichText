@@ -7,6 +7,7 @@ public class RE {
 
     private static RichEditor mEditor = null;
     public static int fontColor = Color.BLACK;
+    public static int fontBackGroundColor = Color.WHITE;
     public static boolean isBold = false;
     public static boolean isItalic = false;
     public static boolean isUnderline = false;
@@ -39,6 +40,12 @@ public class RE {
     public static void setTextColor(int color) {
         fontColor = color;
         mEditor.setTextColor(color);
+        reFreshState();
+    }
+
+    public static void setTextBackgroundColor(int color) {
+        fontBackGroundColor = color;
+        mEditor.setTextBackgroundColor(color);
         reFreshState();
     }
 
@@ -84,8 +91,8 @@ public class RE {
         isUnderline = !isUnderline;
         mEditor.setUnderline();
     }
-    
-    public static void reFreshState(){
+
+    public static void reFreshState() {
         mEditor.refreshState();
     }
 }

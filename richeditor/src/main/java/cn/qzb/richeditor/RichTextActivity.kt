@@ -21,6 +21,9 @@ open class RichTextActivity : AppCompatActivity(), RichEditor.OnDecorationStateL
         if (!text.contains(Integer.toHexString(RE.fontColor).substring(2), true)) {
             RE.getEditor().setTextColor(RE.fontColor)
         }
+        if (!text.contains(Integer.toHexString(RE.fontBackGroundColor).substring(2), true)) {
+            RE.getEditor().setTextBackgroundColor(RE.fontBackGroundColor)
+        }
         if (!text.contains(RE.fontSize.toString() + "pt", true)) {
             RE.getEditor()!!.setFontSize(RE.fontSize)
         }

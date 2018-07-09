@@ -31,6 +31,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         RE.setPadding(20, 20, 20, 20)
         RE.getEditor().setOnDecorationChangeListener(this)
         RE.getEditor().setOnTextChangeListener(this)
+        RE.setTextBackgroundColor(Color.WHITE)
 
         initViews()
         initListener()
@@ -43,6 +44,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         changeIconColor(action_underline, iconDefaultColor)
         changeIconColor(action_font_size, Color.BLACK)
         changeIconColor(action_font_color, Color.BLACK)
+        changeIconColor(action_font_background_color, Color.WHITE)
     }
 
     private fun initListener() {
@@ -52,6 +54,7 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         action_font_size.setOnClickListener(this)
         action_img.setOnClickListener(this)
         action_underline.setOnClickListener(this)
+        action_font_background_color.setOnClickListener(this)
     }
 
 
@@ -79,6 +82,11 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
                 val color = randomColor()
                 RE.setTextColor(color)
                 changeIconColor(action_font_color, color)
+            }
+            R.id.action_font_background_color -> {// 字体背景色
+                val color = randomColor()
+                RE.setTextBackgroundColor(color)
+                changeIconColor(action_font_background_color, color)
             }
         }
     }

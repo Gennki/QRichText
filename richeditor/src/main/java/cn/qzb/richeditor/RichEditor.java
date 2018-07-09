@@ -336,7 +336,6 @@ public class RichEditor extends WebView {
 
     public void setTextBackgroundColor(int color) {
         exec("javascript:RE.prepareInsert();");
-
         String hex = convertHexColorString(color);
         exec("javascript:RE.setTextBackgroundColor('" + hex + "');");
     }

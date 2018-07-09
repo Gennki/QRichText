@@ -144,9 +144,9 @@ RE.setTextColor = function(color) {
 
 RE.setTextBackgroundColor = function(color) {
 //    RE.restorerange();
-//    document.execCommand("styleWithCSS", null, true);
+    document.execCommand("styleWithCSS", null, true);
     document.execCommand('hiliteColor', false, color);
-//    document.execCommand("styleWithCSS", null, false);
+    document.execCommand("styleWithCSS", null, false);
 }
 
 RE.setFontSize = function(fontSize){
@@ -362,7 +362,9 @@ function reportColourAndFontSize(items) {
             fontSize = 3;
         }
         var color = getComputedStyleProperty(containerEl, "color");
+        var backgroundColor = getComputedStyleProperty(containerEl, "background-color");
         items.push(colorRGB2Hex(color));
+        items.push(colorRGB2Hex(backgroundColor));
         items.push(fontSize+"pt");
     }
 }
