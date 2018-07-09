@@ -4,15 +4,15 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.widget.ImageViewCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import cn.qzb.richeditor.RE
-import cn.qzb.richeditor.RichTextActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : RichTextActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val iconSelectColor = Color.BLACK
     private val iconDefaultColor = Color.parseColor("#CDCDCD")
@@ -29,8 +29,6 @@ class MainActivity : RichTextActivity(), View.OnClickListener {
         RE.init(editor)
         RE.setPlaceHolder("Input text here...")
         RE.setPadding(20, 20, 20, 20)
-        RE.getEditor().setOnDecorationChangeListener(this)
-        RE.getEditor().setOnTextChangeListener(this)
         RE.setTextBackgroundColor(Color.WHITE)
 
         initViews()
