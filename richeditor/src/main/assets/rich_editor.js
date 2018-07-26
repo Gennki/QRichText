@@ -393,3 +393,10 @@ function colorRGB2Hex(color) {
     return hex;
  }
 
+ // 将页面滑动到最底端
+ RE.moveToEnd = function(){
+     setTimeout(function(){
+             document.getElementById('editor_end').scrollIntoView();
+         },200)
+ }
+

@@ -66,22 +66,34 @@ object RE {
         editor!!.setPlaceholder(placeHolder)
     }
 
+    /**
+     * 加粗或取消加粗
+     */
     fun setBold() {
         isBold = !isBold
         editor!!.setBold()
     }
 
+    /**
+     * 斜体或取消斜体
+     */
     fun setItalic() {
         isItalic = !isItalic
         editor!!.setItalic()
     }
 
+    /**
+     * 设置字体颜色
+     */
     fun setTextColor(color: Int) {
         fontColor = color
         editor!!.setTextColor(color)
         reFreshState()
     }
 
+    /**
+     * 设置文字背景色
+     */
     fun setTextBackgroundColor(color: Int) {
         fontBackGroundColor = color
         editor!!.setTextBackgroundColor(color)
@@ -108,6 +120,10 @@ object RE {
         editor!!.setPadding(left, top, right, bottom)
     }
 
+    /**
+     * 插入图片
+     * imageWidthPercent: 图片占屏宽度百分比
+     */
     fun insertImage(url: String, alt: String, imageWidthPercent: Int = 100) {
         if (!isFocus) {
             editor!!.focusEditor()
@@ -115,7 +131,10 @@ object RE {
         editor!!.insertImage(url, alt, imageWidthPercent)
     }
 
-    // 图片大小自适应
+    /**
+     * 图片大小自适应
+     * 原始图片有多大,插入就有多大,宽高不做限制
+     */
     fun insertImageWrapWidth(url: String, alt: String) {
         if (!isFocus) {
             editor!!.focusEditor()
@@ -123,12 +142,35 @@ object RE {
         editor!!.insertImageWrapWidth(url, alt)
     }
 
+    /**
+     * 下划线或取消下划线
+     */
     fun setUnderLine() {
         isUnderline = !isUnderline
         editor!!.setUnderline()
     }
 
+    /**
+     * 刷新编辑框状态
+     */
     fun reFreshState() {
         editor!!.refreshState()
+    }
+
+    /**
+     * 将div滑动到最后,可以配合focus()一起使用
+     * 使用场景一般为要编辑某段富文本的时候,刚进入页面的时候,光标要显示到最后,并且编辑框的内容也要滑动到底部
+     * 需要注意的是,刚进入页面的时候马上调用此方法可能会无效,因为页面还没有渲染好
+     * 最好延时几百毫秒后调用
+     */
+    fun moveToEnd() {
+        editor!!.moveToEnd()
+    }
+
+    /**
+     * 获取焦点,需要注意调用此方法后,placeholder会消失
+     */
+    fun focus() {
+        editor!!.focusEditor()
     }
 }

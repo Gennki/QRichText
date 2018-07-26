@@ -324,6 +324,10 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setStrikeThrough();");
     }
 
+    public void moveToEnd() {
+        exec("javascript:RE.moveToEnd();");
+    }
+
     public void setUnderline() {
         exec("javascript:RE.setUnderline();");
     }
