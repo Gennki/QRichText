@@ -377,8 +377,8 @@ function reportColourAndFontSize(items) {
         }
         var color = getComputedStyleProperty(containerEl, "color");
         var backgroundColor = getComputedStyleProperty(containerEl, "background-color");
-        items.push(colorRGB2Hex(color));
-        items.push(colorRGB2Hex(backgroundColor));
+        items.push("textColor:"+colorRGB2Hex(color));
+        items.push("textBgColor:"+colorRGB2Hex(backgroundColor));
         items.push(fontSize+"pt");
     }
 }

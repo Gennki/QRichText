@@ -1,53 +1,59 @@
 package cn.qzb.richeditor
 
+import android.app.Activity
 import android.graphics.Color
 import android.text.TextUtils
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 
 object RE {
-
     var editor: RichEditor? = null
     var fontColor = Color.BLACK
     var fontBackGroundColor = Color.WHITE
+    var fontSize = 3
     var isBold = false
     var isItalic = false
     var isUnderline = false
-    var fontSize = 3
     var isFocus = false// 是否获取到焦点
     var isPreFontSizeChange = false// 防止改完背景色后,再改变字体大小,背景色没有填充满的bug
+    private var clickTime = 0L
 
-    val html: String
+    var html: String
         get() = if (editor!!.html == null || TextUtils.isEmpty(editor!!.text) && !editor!!.html.contains("<img") && editor!!.html.startsWith("<") && !editor!!.html.contains("&nbsp")) {
             ""
         } else {
             editor!!.html
         }
+        set(value) {
+            editor!!.html = value
+        }
 
 
     fun init(mEditor: RichEditor) {
         RE.editor = mEditor
+
         mEditor.setOnDecorationChangeListener { text, types ->
             Log.e("onStateChangeListener", text)
             Log.e("onStateChangeListener", RE.html)
-            if (!text.contains(Integer.toHexString(RE.fontColor).substring(2), true)) {
-                RE.editor?.setTextColor(RE.fontColor)
-            }
-            if (!text.contains(Integer.toHexString(RE.fontBackGroundColor).substring(2), true)) {
-                RE.editor?.setTextBackgroundColor(RE.fontBackGroundColor)
-            }
-            if (!text.contains(RE.fontSize.toString() + "pt", true)) {
-                RE.editor!!.setFontSize(RE.fontSize)
-            }
 
-            if (RE.isBold != types.contains(RichEditor.Type.BOLD)) {
-                RE.editor?.setBold()
+            // 修复快速点击三下状态错乱的bug
+            if (System.currentTimeMillis() - clickTime > 300) {
+                RE.editor?.setTextColor(RE.fontColor)
+                RE.editor?.setTextBackgroundColor(RE.fontBackGroundColor)
+                RE.editor!!.setFontSize(RE.fontSize)
+
+                if (RE.isBold != types.contains(RichEditor.Type.BOLD)) {
+                    RE.editor?.setBold()
+                }
+                if (RE.isItalic != types.contains(RichEditor.Type.ITALIC)) {
+                    RE.editor?.setItalic()
+                }
+                if (RE.isUnderline != types.contains(RichEditor.Type.UNDERLINE)) {
+                    RE.editor?.setUnderline()
+                }
             }
-            if (RE.isItalic != types.contains(RichEditor.Type.ITALIC)) {
-                RE.editor?.setItalic()
-            }
-            if (RE.isUnderline != types.contains(RichEditor.Type.UNDERLINE)) {
-                RE.editor?.setUnderline()
-            }
+            clickTime = System.currentTimeMillis()
+
         }
         mEditor.setOnTextChangeListener { _ ->
             RE.isFocus = true// 文本改动过,说明肯定获取到了焦点
@@ -152,20 +158,15 @@ object RE {
 
     /**
      * 刷新编辑框状态
+     * 这里加延时,是因为如果刚进页面就刷新状态的话,有时候页面还没有渲染好,刷新的状态获取不到
+     * 一般如果出现状态错乱,可以尝试这里加点延时看看效果
      */
-    fun reFreshState() {
-        editor!!.refreshState()
+    fun reFreshState(delay: Long = 0) {
+        editor!!.postDelayed({
+            editor!!.refreshState()
+        }, delay)
     }
 
-    /**
-     * 将div滑动到最后,可以配合focus()一起使用
-     * 使用场景一般为要编辑某段富文本的时候,刚进入页面的时候,光标要显示到最后,并且编辑框的内容也要滑动到底部
-     * 需要注意的是,刚进入页面的时候马上调用此方法可能会无效,因为页面还没有渲染好
-     * 最好延时几百毫秒后调用
-     */
-    fun moveToEnd() {
-        editor!!.moveToEnd()
-    }
 
     /**
      * 获取焦点,需要注意调用此方法后,placeholder会消失
@@ -173,4 +174,28 @@ object RE {
     fun focus() {
         editor!!.focusEditor()
     }
+
+    /**
+     * 将编辑框滑动到最后
+     */
+    fun moveToEnd() {
+        editor!!.moveToEnd()
+    }
+
+    /**
+     * 使用场景一般为要编辑某段富文本的时候,刚进入页面的时候,光标要显示到最后,并且编辑框的内容也要滑动到底部
+     * 将div滑动到最后,可以配合focus()一起使用
+     * 需要注意的是,刚进入页面的时候马上调用此方法可能会无效,因为页面还没有渲染好
+     * 最好延时几百毫秒后调用
+     */
+    fun moveToEndEdit() {
+        focus()
+        editor!!.postDelayed({
+            val imm = editor!!.context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(editor, 0)
+            RE.moveToEnd()
+            RE.reFreshState(300)
+        }, 200)
+    }
+
 }
