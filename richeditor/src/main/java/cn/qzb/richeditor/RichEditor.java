@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -496,4 +497,25 @@ public class RichEditor extends WebView {
             setMeasuredDimension(getMeasuredWidth(), mMaxHeight);
         }
     }
+
+    private long clickTime;
+    private int clickCount;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_UP:
+                if (System.currentTimeMillis() - clickTime < 500) {
+                    clickCount++;
+                } else {
+                    clickCount = 1;
+                }
+                clickTime = System.currentTimeMillis();
+                canUpdate = clickCount < 2;
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public boolean canUpdate = true;
 }

@@ -16,7 +16,6 @@ object RE {
     var isUnderline = false
     var isFocus = false// 是否获取到焦点
     var isPreFontSizeChange = false// 防止改完背景色后,再改变字体大小,背景色没有填充满的bug
-    private var clickTime = 0L
 
     var html: String
         get() = if (editor!!.html == null || TextUtils.isEmpty(editor!!.text) && !editor!!.html.contains("<img") && editor!!.html.startsWith("<") && !editor!!.html.contains("&nbsp")) {
@@ -36,8 +35,7 @@ object RE {
             Log.e("onStateChangeListener", text)
             Log.e("onStateChangeListener", RE.html)
 
-            // 修复快速点击三下状态错乱的bug
-            if (System.currentTimeMillis() - clickTime > 300) {
+            if (editor!!.canUpdate) {
                 RE.editor?.setTextColor(RE.fontColor)
                 RE.editor?.setTextBackgroundColor(RE.fontBackGroundColor)
                 RE.editor!!.setFontSize(RE.fontSize)
@@ -52,7 +50,6 @@ object RE {
                     RE.editor?.setUnderline()
                 }
             }
-            clickTime = System.currentTimeMillis()
 
         }
         mEditor.setOnTextChangeListener { _ ->
