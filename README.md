@@ -16,7 +16,7 @@
 2. 在module下的build.gradle中添加如下语句
 ```
 	dependencies {
-	        implementation 'com.github.Gennki:QRichText:v1.0.1'
+	        implementation 'com.github.Gennki:QRichText:v1.0.2'
 	}
 
 ```
