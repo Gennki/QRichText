@@ -1,7 +1,7 @@
 # QRichText
 
 ## 效果图
-![image.png](http://chuantu.biz/t6/340/1531126153x-1404793292.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![效果图](https://ws1.sinaimg.cn/large/006zFkU4gy1ftl3j9k6zug30go0ljke2.gif)
 
 ## 添加依赖
 1. 在项目根目录的build.gradle中添加如下语句
