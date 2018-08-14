@@ -54,13 +54,6 @@ object RE {
         }
         mEditor.setOnTextChangeListener { _ ->
             RE.isFocus = true// 文本改动过,说明肯定获取到了焦点
-            if (isPreFontSizeChange) {// 防止改完背景色后,再改变字体大小,背景色没有填充满的bug... js的bug
-                editor!!.setTextBackgroundColor(fontBackGroundColor + 1)
-                editor!!.insertText("1")
-                editor!!.deleteOneWord()
-                editor!!.setTextBackgroundColor(fontBackGroundColor)
-                isPreFontSizeChange = false
-            }
         }
     }
 

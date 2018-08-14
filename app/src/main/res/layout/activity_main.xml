@@ -1,82 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
-
-    <HorizontalScrollView
-        android:id="@+id/bottom"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#EEEEEE">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/action_bold"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_bold" />
-
-            <ImageView
-                android:id="@+id/action_italic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_italic" />
-
-            <ImageView
-                android:id="@+id/action_underline"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_underline" />
-
-            <ImageView
-                android:id="@+id/action_font_size"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_size" />
-
-            <ImageView
-                android:id="@+id/action_font_color"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_color" />
-
-            <ImageView
-                android:id="@+id/action_font_background_color"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_background_color" />
-
-
-            <ImageView
-                android:id="@+id/action_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:src="@mipmap/font_img" />
-
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
-
-    <cn.qzb.richeditor.RichEditor
-        android:id="@+id/editor"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom" />
+        tools:context=".MainActivity">
 
-</RelativeLayout>
+        <HorizontalScrollView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#EEEEEE">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/action_bold"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_bold" />
+
+                <ImageView
+                    android:id="@+id/action_italic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_italic" />
+
+                <ImageView
+                    android:id="@+id/action_underline"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_underline" />
+
+                <ImageView
+                    android:id="@+id/action_font_size"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_size" />
+
+                <ImageView
+                    android:id="@+id/action_font_color"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_color" />
+
+                <ImageView
+                    android:id="@+id/action_font_background_color"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_background_color" />
+
+
+                <ImageView
+                    android:id="@+id/action_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_img" />
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+        <cn.qzb.richeditor.RichEditor
+            android:id="@+id/editor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom" />
+
+    </RelativeLayout>
+
+</LinearLayout>

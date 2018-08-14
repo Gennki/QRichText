@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
 
         if (savedInstanceState != null) {
             RE.reFreshState()
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         initViews()
         initListener()
+        initData()
     }
 
 
@@ -53,6 +55,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         action_img.setOnClickListener(this)
         action_underline.setOnClickListener(this)
         action_font_background_color.setOnClickListener(this)
+    }
+
+    private fun initData() {
+        RE.html = "<span style=\"background-color: rgb(255, 255, 255);\">QRICHTEXT</span><img src=\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&amp;fm=200&amp;gp=0.jpg\" width=\"100%\" alt=\"image\"><img src=\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&amp;fm=200&amp;gp=0.jpg\" width=\"100%\" alt=\"image\"><img src=\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&amp;fm=200&amp;gp=0.jpg\" width=\"100%\" alt=\"image\"><img src=\"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3441287165,971217759&amp;fm=200&amp;gp=0.jpg\" width=\"100%\" alt=\"image\"><br><b style=\"\"><font size=\"6\" style=\"background-color: rgb(255, 255, 255);\">QRichText</font><br><font style=\"\"><font color=\"#9d9d14\"><span style=\"background-color: rgb(255, 255, 255);\">编辑</span></font><br><font color=\"#4fe1d8\"><span style=\"background-color: rgb(244, 68, 254);\">自动跳转到最底下</span></font></font></b>"
+        RE.moveToEndEdit()
     }
 
 
