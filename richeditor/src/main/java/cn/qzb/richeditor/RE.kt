@@ -15,7 +15,6 @@ class RE {
     var isItalic = false
     var isUnderline = false
     var isFocus = false// 是否获取到焦点
-    var isPreFontSizeChange = false// 防止改完背景色后,再改变字体大小,背景色没有填充满的bug
     private var preState = ""
 
     var html: String
@@ -127,7 +126,6 @@ class RE {
         this.fontSize = fontSize
         editor!!.setFontSize(fontSize)
         reFreshState()
-        isPreFontSizeChange = true
     }
 
     fun setPadding(left: Int, top: Int, right: Int, bottom: Int) {
