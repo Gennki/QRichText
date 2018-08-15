@@ -6,7 +6,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 
-object RE {
+class RE {
     var editor: RichEditor? = null
     var fontColor = Color.BLACK
     var fontBackGroundColor = Color.WHITE
@@ -16,6 +16,7 @@ object RE {
     var isUnderline = false
     var isFocus = false// 是否获取到焦点
     var isPreFontSizeChange = false// 防止改完背景色后,再改变字体大小,背景色没有填充满的bug
+    private var preState = ""
 
     var html: String
         get() = if (editor!!.html == null || TextUtils.isEmpty(editor!!.text) && !editor!!.html.contains("<img") && editor!!.html.startsWith("<") && !editor!!.html.contains("&nbsp")) {
@@ -27,39 +28,56 @@ object RE {
             editor!!.html = value
         }
 
+    companion object {
+        fun getInstance(mEditor: RichEditor): RE {
+            val re = RE()
+            re.init(mEditor)
+            return re
+        }
+    }
 
-    fun init(mEditor: RichEditor) {
-        RE.editor = mEditor
+    private fun init(mEditor: RichEditor) {
+        editor = mEditor
 
         mEditor.setOnDecorationChangeListener { text, types ->
             Log.e("onStateChangeListener", text)
-            Log.e("onStateChangeListener", RE.html)
-
+            Log.e("onStateChangeListener", html)
+            if (preState == text) {
+                return@setOnDecorationChangeListener
+            }
+            preState = text
             if (editor!!.canUpdate) {
-                RE.editor?.setTextColor(RE.fontColor)
-                RE.editor?.setTextBackgroundColor(RE.fontBackGroundColor)
-                RE.editor!!.setFontSize(RE.fontSize)
+                editor?.setTextColor(fontColor)
+                editor?.setTextBackgroundColor(fontBackGroundColor)
+                editor!!.setFontSize(fontSize)
 
-                if (RE.isBold != types.contains(RichEditor.Type.BOLD)) {
-                    RE.editor?.setBold()
+                if (isBold != types.contains(RichEditor.Type.BOLD)) {
+                    editor?.setBold()
                 }
-                if (RE.isItalic != types.contains(RichEditor.Type.ITALIC)) {
-                    RE.editor?.setItalic()
+                if (isItalic != types.contains(RichEditor.Type.ITALIC)) {
+                    editor?.setItalic()
                 }
-                if (RE.isUnderline != types.contains(RichEditor.Type.UNDERLINE)) {
-                    RE.editor?.setUnderline()
+                if (isUnderline != types.contains(RichEditor.Type.UNDERLINE)) {
+                    editor?.setUnderline()
                 }
             }
 
         }
         mEditor.setOnTextChangeListener { _ ->
-            RE.isFocus = true// 文本改动过,说明肯定获取到了焦点
+            isFocus = true// 文本改动过,说明肯定获取到了焦点
         }
     }
 
 
     fun setPlaceHolder(placeHolder: String) {
         editor!!.setPlaceholder(placeHolder)
+    }
+
+    /**
+     * 是否可编辑
+     */
+    fun setEditable(editable: Boolean) {
+        editor!!.setInputEnabled(editable)
     }
 
     /**
@@ -106,7 +124,7 @@ object RE {
         if (fontSize < 0 || fontSize > 7) {
             throw IllegalStateException("The size value must be between 1 and 7")
         }
-        RE.fontSize = fontSize
+        this.fontSize = fontSize
         editor!!.setFontSize(fontSize)
         reFreshState()
         isPreFontSizeChange = true
@@ -183,9 +201,8 @@ object RE {
         editor!!.postDelayed({
             val imm = editor!!.context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(editor, 0)
-            RE.moveToEnd()
-            RE.reFreshState(300)
+            moveToEnd()
+            reFreshState(300)
         }, 200)
     }
-
 }
