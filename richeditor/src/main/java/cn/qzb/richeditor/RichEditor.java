@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -160,10 +159,10 @@ public class RichEditor extends WebView {
 
         int gravity = ta.getInt(0, NO_ID);
         switch (gravity) {
-            case Gravity.LEFT:
+            case Gravity.START:
                 exec("javascript:RE.setTextAlign(\"left\")");
                 break;
-            case Gravity.RIGHT:
+            case Gravity.END:
                 exec("javascript:RE.setTextAlign(\"right\")");
                 break;
             case Gravity.TOP:
@@ -451,11 +450,7 @@ public class RichEditor extends WebView {
     }
 
     private void load(String trigger) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            evaluateJavascript(trigger, null);
-        } else {
-            loadUrl(trigger);
-        }
+        evaluateJavascript(trigger, null);
     }
 
     protected class EditorWebViewClient extends WebViewClient {
