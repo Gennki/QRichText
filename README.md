@@ -3,7 +3,7 @@
 ## 效果图
 
 
-<img src="https://ws1.sinaimg.cn/large/006zFkU4gy1ftl3j9k6zug30go0ljke2.gif" width="40%" alt="效果图1"/><img src="https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif" width="40%" alt="效果图2"/>
+<img src="https://ws1.sinaimg.cn/large/006zFkU4gy1ftl3j9k6zug30go0ljke2.gif" width="50%" alt="效果图1"/><img src="https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif" width="50%" alt="效果图2"/>
 
 
 
