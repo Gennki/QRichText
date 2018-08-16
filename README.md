@@ -1,10 +1,9 @@
 # QRichText
 
 ## 效果图
-![效果图1](https://ws1.sinaimg.cn/large/006zFkU4gy1ftl3j9k6zug30go0ljke2.gif)
 
 
-![效果图2](https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif)
+<img src="https://ws1.sinaimg.cn/large/006zFkU4gy1ftl3j9k6zug30go0ljke2.gif" width="40%" alt="效果图1"/><img src="https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif" width="40%" alt="效果图2"/>
 
 
 
