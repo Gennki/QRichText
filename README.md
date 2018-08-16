@@ -5,7 +5,7 @@
 
 
 
-![效果图2](![](https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif))
+![效果图2](https://ws1.sinaimg.cn/large/006zFkU4ly1fubciepohfg30ak0irkjl.gif)
 
 
 
