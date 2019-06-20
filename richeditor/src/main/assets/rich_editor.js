@@ -153,6 +153,22 @@ RE.setFontSize = function(fontSize){
     document.execCommand("fontSize", false, fontSize);
 }
 
+
+RE.setLineHeight = function(heightInPixel) {
+// 设置单行行高
+//            document.execCommand('formatblock', false, 'p')
+//            var selectedNodes = [];
+//            var sel = rangy.getSelection();
+//            for (var i = 0; i < sel.rangeCount; i++) {
+//                selectedNodes = selectedNodes.concat(sel.getRangeAt(i).getNodes());
+//                $(selectedNodes).css("height", heightInPixel);
+//            }
+//            selectedElement = window.getSelection().focusNode.parentNode;
+//            $(selectedElement).css("height", heightInPixel);
+                var t = document.getElementById('editor');
+                t.style.lineHeight = heightInPixel;
+        }
+
 RE.setHeading = function(heading) {
     document.execCommand('formatBlock', false, '<h'+heading+'>');
 }

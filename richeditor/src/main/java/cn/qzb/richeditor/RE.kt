@@ -203,4 +203,9 @@ class RE {
             reFreshState(300)
         }, 200)
     }
+
+
+    fun setLineHeight( heightInPixel:Int) {
+        editor!!.setLineHeight(heightInPixel)
+    }
 }
