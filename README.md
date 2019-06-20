@@ -53,6 +53,7 @@ re.setTextBackgroundColor(Color.WHITE)
 | re.setItalic()                              | 斜体,使用方法和加粗相同                                      |
 | re.setUnderLine()                           | 下划线,使用方法和加粗相同                                    |
 | re.setTextSize(fontSize)                    | 字号大小,fontSize范围为1~7的整数                             |
+| re.setLineHeight(heightInPixel)             | 设置行间距,单位为px                                          |
 | re.insertImage(url, alt, imageWidthPercent) | url为图片路径,alt为图片下方显示的说明文字,暂时不支持,imageWidthPercent为图片宽度占一屏幕的百分比,默认为100 |
 | re.setTextColor(color)                      | 设置字体颜色                                                 |
 | re.setTextBackgroundColor(color)            | 设置字体背景颜色                                             |
